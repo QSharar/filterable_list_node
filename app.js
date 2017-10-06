@@ -3,8 +3,8 @@ var bp = require("body-parser");
 var path = require("path");
 var exphbs = require("express-handlebars");
 
-
 var app = express();
+
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 app.use("/public" , express.static(path.join(__dirname, "public")));
@@ -36,12 +36,10 @@ var names = [   "Andres" ,
 
 app.use(bp.urlencoded({extended: false}));
 app.use(bp.json());
-app.get("/page", (req,res) => res.render("page"));
+
 app.get("/", (req, res ) => {
     console.log(`${req.method} -> ${req.url}`);
     res.render('list', {msg: names});
-})
-
-app.listen(9000);
+}).listen(9000);
 
 
