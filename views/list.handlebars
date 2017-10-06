@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<head> 
+  <title> Filterable List </title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  
+<div class="form-group">
+    <input type="text" class="form-control form-control-lg col-md-6 offset-md-3 mb-2 mt-2 " style="border-width: 3px; border-color: #ccddff" onkeyup="filter()" placeholder="Search" id="search">
+</div>       
+
+<div class="container">
+	<div class="row">
+        <div class="col-md-6 offset-md-3" >
+              <ul id="ulList">
+                {{#each msg}}      
+             
+                  <p class="card mb-1 card-block" style="border-color: #ff4d4d ; text-align: center" >{{this}}</p>
+
+                {{/each}}
+              </ul> 
+              
+        </div>
+  </div>
+</div>
+
+
+</body>
+
+
+<script>
+
+
+function filter(){
+  let input = document.getElementById("search").value.toUpperCase();
+  let ul = document.getElementById("ulList");
+  let ps = ul.getElementsByTagName("p");
+
+  for(i=0; i < ps.length ; i++){
+
+    if(input===""){
+      ps[i].style.borderColor = "#ff0000";
+      ps[i].style.display = "";
+    }else{
+      if(ps[i].innerHTML.toUpperCase().indexOf(input) > -1 ){
+        ps[i].style.display = "";
+        ps[i].style.borderColor = "#00b33c";
+        
+      }else{
+        ps[i].style.display = "none";
+        }
+    }
+  }
+}
+ 
+</script>
+</body>
